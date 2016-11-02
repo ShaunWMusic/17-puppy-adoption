@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
-    <div class="section columns">
-      <div class="panel column is-half is-paddingless">
+    <div class="section columns is-multiline">
+      <div class="panel column is-one-quarter is-paddingless">
         <p class="panel-heading">Adopt a Pupper</p>
         <div class="panel-block is-active">
           <div class="media">
@@ -10,14 +10,37 @@
               </div>
               <div class="">
                  <h2 class="">Luna</h2>
-                <router-link to="/" class="">read more</router-link>
+                <router-link to="{ name: 'detail', params: { id: item.id } }"
+                class="">
+                read more
+              </router-link>
              </div>
            </div>
         </div>
 
       </div>
     </div>
-
+    <div class="section columns">
+      <table class="column is-half">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr v-for="item in lunchSpots">
+        <td>{{ item.name }}</td>
+        <td>{{ item.age }}</td>
+        <td>
+          <router-link :to="{ name: 'detail', params: { id: item.id } }">
+            MORE!!!
+          </router-link>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
   </div>
 </template>
 
