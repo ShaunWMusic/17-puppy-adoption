@@ -16,17 +16,16 @@
           <div class="column is-4">
             <div class="panel">
               <p class="panel-heading">Adopt a Pupper</p>
-              <div class="panel-block is-active">
+              <div class="panel-block is-active" v-for="puppy in puppies">
                 <div class="media">
                    <div class="media-left">
                        <figure class="image is-64x64">
-                         <img :src="{ puppies: 'image_url' }" alt="">
+                         <img :src="puppy.image_url" alt="">
                        </figure>
                     </div>
                     <div class="">
-                       <h2 class="subtitle">{{ puppies.name }}</h2>
-                      <router-link to="{ name: 'detail', params: { id: item.id } }"
-                      class="">
+                       <h2 class="subtitle">{{ puppy.name }}</h2>
+                      <router-link :to="{ name: 'detail', params: { id: puppy.id } }">
                       read more
                     </router-link>
                    </div>
@@ -52,7 +51,6 @@
 <script>
 import IndexPage from './index.vue';
 const apiUrl = 'https://tiy-tn-class-api-fall-16.herokuapp.com/puppies/shaun';
-
 
 export default {
   componenets: {

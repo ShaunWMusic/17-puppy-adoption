@@ -24,3 +24,9 @@ $c-primary: $c-blue;
   font-size: 1.2rem;
   font-weight: normal;
 }
+
+.is-square {
+  img {
+    object-fit: cover;
+  }
+}
