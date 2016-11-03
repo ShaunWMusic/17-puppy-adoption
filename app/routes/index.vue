@@ -5,10 +5,11 @@
         <tr>
           <th>Name</th>
           <th>Age</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in lunchSpots">
+        <tr v-for="item in puppies">
           <td>{{ item.name }}</td>
           <td>{{ item.age }}</td>
           <td>
@@ -24,7 +25,8 @@
 
 <script>
 export default {
-  props: ['']
+  props: ['puppies'],
+
   data() {
     return {};
   },

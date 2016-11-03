@@ -10,37 +10,39 @@
       </div>
     </div>
 
-    <div class="main">
-      <div class="section columns">
-        <div class="column is-4">
-          <div class="panel">
-            <p class="panel-heading">Adopt a Pupper</p>
-            <div class="panel-block is-active">
-              <div class="media">
-                 <div class="media-left">
-                     <figure class="image is-64x64">
-                       <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-21.jpg" alt="">
-                     </figure>
-                  </div>
-                  <div class="">
-                     <h2 class="subtitle">Luna</h2>
-                    <router-link to="{ name: 'detail', params: { id: item.id } }"
-                    class="">
-                    read more
-                  </router-link>
+    <div class="main section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-4">
+            <div class="panel">
+              <p class="panel-heading">Adopt a Pupper</p>
+              <div class="panel-block is-active">
+                <div class="media">
+                   <div class="media-left">
+                       <figure class="image is-64x64">
+                         <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-21.jpg" alt="">
+                       </figure>
+                    </div>
+                    <div class="">
+                       <h2 class="subtitle">Luna</h2>
+                      <router-link to="{ name: 'detail', params: { id: item.id } }"
+                      class="">
+                      read more
+                    </router-link>
+                   </div>
                  </div>
-               </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="column">
-          <router-view
-            :puppies="puppies"
-            :api-url="apiUrl"
-            @addPuppy="addPuppy"
-            @removePuppy="removePuppy"
-            @updatePuppy="updatePuppy">
-          </router-view>
+          <div class="column">
+            <router-view
+              :puppies="puppies"
+              :api-url="apiUrl"
+              @addPuppy="addPuppy"
+              @removePuppy="removePuppy"
+              @updatePuppy="updatePuppy">
+            </router-view>
+          </div>
         </div>
       </div>
     </div>
@@ -66,7 +68,7 @@ export default {
 
   mounted() {
     this.getpuppies();
-  }
+  },
 
   methods: {
     getpuppies() {
@@ -102,6 +104,8 @@ export default {
         this.$router.push({ name: 'index' });
       });
     },
+
+    updatePuppy() {}
   },
 };
 </script>

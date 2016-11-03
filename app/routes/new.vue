@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="">
-    <form @submit.prevent="saveForm">
+    <form @submit.prevent="savePuppy">
       <label for="puppy-name">Name</label>
-      <input id="spot-name" type="text" placeholder="" v-model="formValues.name">
+      <input id="puppy-name" type="text" placeholder="" v-model="formValues.name">
 
       <label for="puppy-age">Age</label>
       <input id="puppy-age" type="text" placeholder="" v-model="formValues.age">
@@ -56,7 +56,7 @@ export default {
   },
 
   methods: {
-    addPuppy() {
+    savePuppy() {
   //tell the application to save a new lunch spot
   this.$emit('addPuppy', this.formValues);
 
