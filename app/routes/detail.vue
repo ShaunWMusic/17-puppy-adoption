@@ -26,25 +26,25 @@
               </span>
             </button>
           </div>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Age</th>
-                <th>Breed</th>
-                <th>Color</th>
-                <th>Sex</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="puppy in puppies">
-                <td>{{ puppy.age }}</td>
-                <td>{{ puppy.breed }}</td>
-                <td>{{ puppy.color }}</td>
-                <td>{{ puppy.sex }}</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+          <nav class="level">
+  <div class="level-item has-text-centered">
+    <p class="heading">Age</p>
+    <p class="title">{{ puppy.age }}</p>
+  </div>
+  <div class="level-item has-text-centered">
+    <p class="heading">Breed</p>
+    <p class="title">{{ puppy.breed }}</p>
+  </div>
+  <div class="level-item has-text-centered">
+    <p class="heading">Color</p>
+    <p class="title">{{ puppy.color }}</p>
+  </div>
+  <div class="level-item has-text-centered">
+    <p class="heading">Sex</p>
+    <p class="title">{{ puppy.sex }}</p>
+  </div>
+</nav>
+
         </div>
       </div>
 
@@ -55,6 +55,7 @@
 <script>
 export default {
   props: ['apiUrl'],
+  props: ['puppies'],
 
   data() {
     return {
@@ -65,18 +66,18 @@ export default {
 
   mounted() {
     this.loadData()
-},
+  },
 
   methods: {
     loadData() {
       fetch(`${this.apiUrl}/${this.id}`)
-      .then((r) => r.json())
-      .then((puppy) => {
-        this.puppy = puppy;
-      })
-      // .catch(() => {
-      //   this.$router.push({ name: 'index' });
-      // });
+        .then((r) => r.json())
+        .then((puppy) => {
+          this.puppy = puppy;
+        })
+        // .catch(() => {
+        //   this.$router.push({ name: 'index' });
+        // });
     },
 
     removePuppy() {
