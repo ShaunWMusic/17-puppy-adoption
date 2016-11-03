@@ -20,11 +20,11 @@
                 <div class="media">
                    <div class="media-left">
                        <figure class="image is-64x64">
-                         <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-21.jpg" alt="">
+                         <img :src="{ puppies: 'image_url' }" alt="">
                        </figure>
                     </div>
                     <div class="">
-                       <h2 class="subtitle">Luna</h2>
+                       <h2 class="subtitle">{{ puppies.name }}</h2>
                       <router-link to="{ name: 'detail', params: { id: item.id } }"
                       class="">
                       read more
