@@ -53,13 +53,55 @@ const apiUrl = 'https://tiy-tn-class-api-fall-16.herokuapp.com/puppies/shaun';
 
 
 export default {
+  componenets: {
+    IndexPage,
+  },
   data() {
     return {
+      apiUrl,
+      puppies: [],
+      path: window.location.pathname,
     };
   },
 
-  methods: {
+  mounted() {
+    this.getpuppies();
+  }
 
+  methods: {
+    getpuppies() {
+    fetch(apiUrl)
+    .then((r) => r.json())
+    .then((puppies) => {
+      this.puppies = puppies;
+    });
+  },
+
+    addPuppy(input) {
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(input),
+      })
+      .then((r) => r.json())
+      .then((puppies) => {
+        this.puppies = [puppies, ...this.puppies]
+
+        this.$router.push({ name: 'index' })
+      })
+      console.log('add', input);
+    },
+
+    removePuppy(puppies) {
+      fetch(`${apiUrl}/${puppies.id}`, {
+        method: 'DELETE',
+      })
+      .then(() => {
+        this.puppies = this.puppies.filter((old) => old.id !== puppies.id);
+
+        this.$router.push({ name: 'index' });
+      });
+    },
   },
 };
 </script>
