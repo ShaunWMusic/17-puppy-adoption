@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
     <h2 class="title">Puppies for Adoption</h2>
-    <router-link to="/new" class="is-pulled-right is-info button">Adopt a Pupper</router-link>
+    <router-link to="/new" class="is-pulled-right is-info button">Add a Pupper</router-link>
     <table class="table">
       <thead>
         <tr>
@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="puppy in puppies">
+        <tr v-if="!puppy.adopted" v-for="puppy in puppies">
           <td>{{ puppy.name }}</td>
           <td>{{ puppy.age }}</td>
           <td>
@@ -32,7 +32,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="puppy in puppies">
+        <tr v-if="puppy.adopted" v-for="puppy in puppies">
           <td>{{ puppy.name }}</td>
           <td>{{ puppy.age }}</td>
           <td>

@@ -2,11 +2,17 @@
   <div class="">
         <h2 class="title has-text-centered">
         {{ puppy.name }}
-        <button class="button is-success" @click="adopted">
+        <button class="button is-primary" @click="adopted" v-if="puppy.adopted">
           <span class="icon">
             <i class="fa fa-paw"></i>
           </span>
-          <span>I'm Adopted!</span>
+            <span>I'm Adopted!</span>
+        </button>
+        <button class="button is-success" @click="adopted" v-else>
+          <span class="icon">
+            <i class="fa fa-paw"></i>
+          </span>
+            <span>Adopt Me!</span>
         </button>
       </h2>
       <div class="columns">
@@ -53,12 +59,14 @@
           <p class="title">{{ puppy.sex }}</p>
         </div>
       </nav>
+      <h2 class="title">About Me</h2>
+      <p>{{puppy.description}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['apiUrl'],
+  props: ['apiUrl', 'puppies'],
 
   data() {
     return {
@@ -74,18 +82,22 @@ export default {
   watch: {
     // call again the method if the route changes
     '$route': 'loadData',
+    'puppies': 'loadData',
   },
 
   methods: {
     loadData() {
-      fetch(`${this.apiUrl}/${this.$route.params.id}`)
-        .then((r) => r.json())
-        .then((puppy) => {
-          this.puppy = puppy;
-        })
-        // .catch(() => {
-        //   this.$router.push({ name: 'index' });
-        // });
+      const puppy = this.puppies.find((puppy) => puppy.id === this.$route.params.id);
+
+      if (puppy) {
+        this.puppy = puppy;
+      } else {
+        fetch(`${this.apiUrl}/${this.$route.params.id}`)
+          .then((r) => r.json())
+          .then((puppy) => {
+            this.puppy = puppy;
+          });
+      }
     },
 
 
@@ -95,8 +107,8 @@ export default {
       }
     },
 
-    adopted() {
-
+    adopted(input) {
+      this.$emit('updatePuppy', this.puppy.id, { adopted: !this.puppy.adopted });
     },
   },
 };

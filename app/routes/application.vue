@@ -92,18 +92,33 @@ export default {
       console.log('add', input);
     },
 
-    removePuppy(puppies) {
-      fetch(`${apiUrl}/${puppies.id}`, {
+    removePuppy(puppy) {
+      fetch(`${apiUrl}/${puppy.id}`, {
         method: 'DELETE',
       })
       .then(() => {
-        this.puppies = this.puppies.filter((old) => old.id !== puppies.id);
-
+        this.puppies = this.puppies.filter((old) => old.id !== puppy.id);
         this.$router.push({ name: 'index' });
       });
     },
 
-    updatePuppy() {}
+    updatePuppy(id, values) {
+      fetch(`${apiUrl}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
+      .then((r) => r.json())
+      .then((updatedPuppy) => {
+        this.puppies = this.puppies.map((old) => {
+          if(old.id === updatedPuppy.id) {
+            return updatedPuppy;
+          }
+
+          return old;
+        });
+      });
+    },
   },
 };
 </script>
