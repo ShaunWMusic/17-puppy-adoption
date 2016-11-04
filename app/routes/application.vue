@@ -37,6 +37,8 @@
             <router-view
               :puppies="puppies"
               :api-url="apiUrl"
+              :find-puppy="findPuppy"
+
               @addPuppy="addPuppy"
               @removePuppy="removePuppy"
               @updatePuppy="updatePuppy">
@@ -60,7 +62,7 @@ export default {
     return {
       apiUrl,
       puppies: [],
-      path: window.location.pathname,
+      // path: window.location.pathname,
     };
   },
 
@@ -70,12 +72,23 @@ export default {
 
   methods: {
     getpuppies() {
-    fetch(apiUrl)
-    .then((r) => r.json())
-    .then((puppies) => {
-      this.puppies = puppies;
-    });
-  },
+      fetch(apiUrl)
+      .then((r) => r.json())
+      .then((puppies) => {
+        this.puppies = puppies;
+      });
+    },
+
+    findPuppy(id) {
+      const puppy = this.puppies.find((puppy) => puppy.id === id);
+
+      if (puppy) {
+        return Promise.resolve(puppy);
+      } else {
+        return fetch(`${this.apiUrl}/${id}`)
+          .then((r) => r.json());
+      }
+    },
 
     addPuppy(input) {
       fetch(apiUrl, {

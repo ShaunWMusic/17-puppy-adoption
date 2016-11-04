@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="column has-text-centered">
-            <router-link class="button is-info" :to="{ name: 'edit', params: { id: puppy.id }}">
+            <router-link class="button is-info" :to="{ name: 'update', params: { id: puppy.id }}">
               <span>Update</span>
               <span class="icon">
                 <span class="fa fa-pencil-square-o"></span>
@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  props: ['apiUrl', 'puppies'],
+  props: ['findPuppy'],
 
   data() {
     return {
@@ -87,19 +87,11 @@ export default {
 
   methods: {
     loadData() {
-      const puppy = this.puppies.find((puppy) => puppy.id === this.$route.params.id);
-
-      if (puppy) {
-        this.puppy = puppy;
-      } else {
-        fetch(`${this.apiUrl}/${this.$route.params.id}`)
-          .then((r) => r.json())
-          .then((puppy) => {
-            this.puppy = puppy;
-          });
-      }
+      this.findPuppy(this.$route.params.id)
+        .then((puppy) => {
+          this.puppy = puppy;
+        });
     },
-
 
     removePuppy() {
       if (confirm('Are you sure')) {
