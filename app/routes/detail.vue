@@ -19,6 +19,12 @@
             </div>
           </div>
           <div class="column has-text-centered">
+            <button class="button is-info" @click="updatePuppy">
+              <span>Update</span>
+              <span class="icon">
+                <span class="fa fa-pencil-square-o"></span>
+              </span>
+            </button>
             <button class="button is-danger" @click="removePuppy">
               <span>Delete</span>
               <span class="icon">
@@ -26,36 +32,33 @@
               </span>
             </button>
           </div>
-          <nav class="level">
-  <div class="level-item has-text-centered">
-    <p class="heading">Age</p>
-    <p class="title">{{ puppy.age }}</p>
-  </div>
-  <div class="level-item has-text-centered">
-    <p class="heading">Breed</p>
-    <p class="title">{{ puppy.breed }}</p>
-  </div>
-  <div class="level-item has-text-centered">
-    <p class="heading">Color</p>
-    <p class="title">{{ puppy.color }}</p>
-  </div>
-  <div class="level-item has-text-centered">
-    <p class="heading">Sex</p>
-    <p class="title">{{ puppy.sex }}</p>
-  </div>
-</nav>
-
         </div>
       </div>
 
-
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <p class="heading">Age</p>
+          <p class="title">{{ puppy.age }}</p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Breed</p>
+          <p class="title">{{ puppy.breed }}</p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Color</p>
+          <p class="title">{{ puppy.color }}</p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Sex</p>
+          <p class="title">{{ puppy.sex }}</p>
+        </div>
+      </nav>
   </div>
 </template>
 
 <script>
 export default {
   props: ['apiUrl'],
-  props: ['puppies'],
 
   data() {
     return {
@@ -68,9 +71,14 @@ export default {
     this.loadData()
   },
 
+  watch: {
+    // call again the method if the route changes
+    '$route': 'loadData',
+  },
+
   methods: {
     loadData() {
-      fetch(`${this.apiUrl}/${this.id}`)
+      fetch(`${this.apiUrl}/${this.$route.params.id}`)
         .then((r) => r.json())
         .then((puppy) => {
           this.puppy = puppy;
@@ -80,11 +88,13 @@ export default {
         // });
     },
 
+
     removePuppy() {
       if (confirm('Are you sure')) {
         this.$emit('removePuppy', this.puppy)
       }
-    }
+    },
+    updatePuppy() {},
   },
 };
 </script>

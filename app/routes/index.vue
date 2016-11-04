@@ -13,7 +13,7 @@
           <td>{{ puppy.name }}</td>
           <td>{{ puppy.age }}</td>
           <td>
-            <router-link :to="{ name: 'detail', params: { id: puppy.id } }">
+            <router-link class="is-primary":to="{ name: 'detail', params: { id: puppy.id } }">
               MORE!!!
             </router-link>
           </td>
