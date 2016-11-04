@@ -25,7 +25,7 @@
                     </div>
                     <div class="">
                        <h2 class="subtitle">{{ puppy.name }}</h2>
-                      <router-link :to="{ name: 'detail', params: { id: puppy.id } }">
+                      <router-link class="is-primary" :to="{ name: 'detail', params: { id: puppy.id } }">
                       read more
                     </router-link>
                    </div>

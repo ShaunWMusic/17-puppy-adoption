@@ -2,7 +2,7 @@
   <div class="">
         <h2 class="title has-text-centered">
         {{ puppy.name }}
-        <button class="button is-success">
+        <button class="button is-success" @click="adopted">
           <span class="icon">
             <i class="fa fa-paw"></i>
           </span>
@@ -19,12 +19,12 @@
             </div>
           </div>
           <div class="column has-text-centered">
-            <button class="button is-info" @click="updatePuppy">
+            <router-link class="button is-info" :to="{ name: 'edit', params: { id: puppy.id }}">
               <span>Update</span>
               <span class="icon">
                 <span class="fa fa-pencil-square-o"></span>
               </span>
-            </button>
+            </router-link>
             <button class="button is-danger" @click="removePuppy">
               <span>Delete</span>
               <span class="icon">
@@ -94,7 +94,10 @@ export default {
         this.$emit('removePuppy', this.puppy)
       }
     },
-    updatePuppy() {},
+
+    adopted() {
+
+    },
   },
 };
 </script>
