@@ -38,7 +38,6 @@
               :puppies="puppies"
               :api-url="apiUrl"
               :find-puppy="findPuppy"
-
               @addPuppy="addPuppy"
               @removePuppy="removePuppy"
               @updatePuppy="updatePuppy">
@@ -62,7 +61,7 @@ export default {
     return {
       apiUrl,
       puppies: [],
-      // path: window.location.pathname,
+      path: window.location.pathname,
     };
   },
 

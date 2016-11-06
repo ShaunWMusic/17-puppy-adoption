@@ -66,7 +66,8 @@
 
 <script>
 export default {
-  props: ['findPuppy'],
+  props: ['findPuppy', 'puppies'],
+
 
   data() {
     return {
