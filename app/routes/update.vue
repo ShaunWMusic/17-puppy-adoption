@@ -89,6 +89,7 @@ export default {
 
     savePuppy() {
       this.$emit('updatePuppy', this.puppy.id, this.formValues);
+      this.$router.push({ name: 'index' });
     }
   },
 };

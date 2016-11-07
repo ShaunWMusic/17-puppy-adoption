@@ -17,7 +17,7 @@
       </h2>
       <div class="columns">
         <div class="column is-half is-offset-3">
-          <div class="card">
+          <div class="card is-fullwidth">
             <div class="card-image">
               <figure class="image is-square">
                 <img :src="puppy.image_url" alt="">

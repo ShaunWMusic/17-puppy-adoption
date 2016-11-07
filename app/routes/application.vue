@@ -19,7 +19,7 @@
               <div class="panel-block is-active" v-for="puppy in puppies">
                 <div class="media">
                    <div class="media-left">
-                       <figure class="image is-64x64">
+                       <figure class="image is-64x64 is-square">
                          <img :src="puppy.image_url" alt="">
                        </figure>
                     </div>
